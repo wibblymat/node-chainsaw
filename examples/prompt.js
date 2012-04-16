@@ -1,4 +1,4 @@
-var Chainsaw = require('chainsaw');
+var chainsaw = require('chainsaw');
 var Lazy = require('lazy');
 
 module.exports = Prompt;
@@ -16,7 +16,7 @@ function Prompt (stream) {
     ;
     
     var vars = {};
-    return Chainsaw(function (saw) {
+    return chainsaw(function (saw) {
         this.getline = function (f) {
             var g = function (line) {
                 saw.nest(f, line, vars);

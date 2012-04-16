@@ -1,7 +1,7 @@
-var Chainsaw = require('chainsaw');
+var chainsaw = require('chainsaw');
 
 function AddDo (sum) {
-    return Chainsaw(function (saw) {
+    return chainsaw(function (saw) {
         this.add = function (n) {
             sum += n;
             saw.next();

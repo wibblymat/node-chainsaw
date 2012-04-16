@@ -1,13 +1,15 @@
-Chainsaw
+chainsaw
 ========
 
 Build chainable fluent interfaces the easy way in node.js.
+
+[![build status](https://secure.travis-ci.org/substack/node-chainsaw.png)](http://travis-ci.org/substack/node-chainsaw)
 
 With this meta-module you can write modules with chainable interfaces.
 Chainsaw takes care of all of the boring details and makes nested flow control
 super simple too.
 
-Just call `Chainsaw` with a constructor function like in the examples below.
+Just call `chainsaw` with a constructor function like in the examples below.
 In your methods, just do `saw.next()` to move along to the next event and
 `saw.nest()` to create a nested chain.
 
@@ -21,10 +23,10 @@ add_do.js
 
 This silly example adds values with a chainsaw.
 
-    var Chainsaw = require('chainsaw');
+    var chainsaw = require('chainsaw');
     
     function AddDo (sum) {
-        return Chainsaw(function (saw) {
+        return chainsaw(function (saw) {
             this.add = function (n) {
                 sum += n;
                 saw.next();
@@ -56,14 +58,14 @@ prompt.js
 This example provides a wrapper on top of stdin with the help of
 [node-lazy](https://github.com/pkrumins/node-lazy) for line-processing.
 
-    var Chainsaw = require('chainsaw');
-    var Lazy = require('lazy');
+    var chainsaw = require('chainsaw');
+    var lazy = require('lazy');
     
     module.exports = Prompt;
     function Prompt (stream) {
         var waiting = [];
         var lines = [];
-        var lazy = Lazy(stream).lines.map(String)
+        var lazy = lazy(stream).lines.map(String)
             .forEach(function (line) {
                 if (waiting.length) {
                     var w = waiting.shift();
@@ -74,7 +76,7 @@ This example provides a wrapper on top of stdin with the help of
         ;
         
         var vars = {};
-        return Chainsaw(function (saw) {
+        return chainsaw(function (saw) {
             this.getline = function (f) {
                 var g = function (line) {
                     saw.nest(f, line, vars);
@@ -153,7 +155,7 @@ consume a tremendous amount of memory, so we also offer a "light" mode
 where actions are not recorded and the aforementioned methods are
 disabled.
 
-To enable light mode simply use `Chainsaw.light()` to construct your
-saw, instead of `Chainsaw()`.
+To enable light mode simply use `chainsaw.light()` to construct your
+saw, instead of `chainsaw()`.
 
 
