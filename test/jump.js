@@ -2,9 +2,7 @@ var test = require('tap').test;
 var chainsaw = require('../');
 
 test('jump', function (t) {
-    var to = setTimeout(function () {
-        t.fail('builder never fired');
-    }, 50);
+    t.plan(2);
     
     var xs = [ 4, 5, 6, -4, 8, 9, -1, 8 ];
     var xs_ = [];
@@ -22,7 +20,6 @@ test('jump', function (t) {
         };
         
         saw.on('end', function () {
-            clearTimeout(to);
             t.same(xs, [ 8 ]);
             t.same(xs_, [ 1, 1, 1, 1, 2, 3, 2, 3, 2, 3 ]);
         });
