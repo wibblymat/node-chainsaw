@@ -1,4 +1,4 @@
-var Traverse = require('traverse');
+var traverse = require('traverse');
 var EventEmitter = require('events').EventEmitter;
 
 module.exports = Chainsaw;
@@ -23,7 +23,7 @@ Chainsaw.saw = function (builder, handlers) {
     saw.actions = [];
 
     saw.chain = function () {
-        var ch = Traverse(saw.handlers).map(function (node) {
+        var ch = traverse(saw.handlers).map(function (node) {
             if (this.isRoot) return node;
             var ps = this.path;
 
