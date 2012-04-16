@@ -1,5 +1,5 @@
 var test = require('tap').test;
-var chainsaw = require('../index');
+var chainsaw = require('../');
 
 test('getset', function (t) {
     t.plan(4);
