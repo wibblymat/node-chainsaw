@@ -130,18 +130,11 @@ And now for the new Prompt() module in action:
 Installation
 ============
 
-With [npm](http://github.com/isaacs/npm), just do:
-    npm install chainsaw
+With [npm](http://github.com/isaacs/npm) do:
 
-or clone this project on github:
-
-    git clone http://github.com/substack/node-chainsaw.git
-
-To run the tests with [expresso](http://github.com/visionmedia/expresso),
-just do:
-
-    expresso
-
+```
+npm install chainsaw
+```
 
 Light Mode vs Full Mode
 =======================
@@ -157,5 +150,3 @@ disabled.
 
 To enable light mode simply use `chainsaw.light()` to construct your
 saw, instead of `chainsaw()`.
-
-
