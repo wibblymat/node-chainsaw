@@ -1,5 +1,6 @@
 var traverse = require('traverse');
 var EventEmitter = require('events').EventEmitter;
+var immediate = global.setImmediate || process.nextTick;
 
 module.exports = Chainsaw;
 function Chainsaw (builder) {
@@ -38,7 +39,7 @@ Chainsaw.saw = function (builder, handlers) {
             }
         });
 
-        process.nextTick(function () {
+        immediate(function () {
             saw.emit('begin');
             saw.next();
         });
